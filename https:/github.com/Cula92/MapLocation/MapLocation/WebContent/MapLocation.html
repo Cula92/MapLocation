@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body onLoad="getLocation()">
+
+<form name="loc" method="get" action="http://localhost:8080/MapLocation/ServletLocation">
+	<input type="hidden" id="latitude" name="latitude"/>	
+	<input type="hidden" id="longitude" name="longitude"/>
+	<input type="submit" value="Dammi la mia posizione geografica"/>
+</form>
+
+<script>
+var x = document.getElementById("latitude");
+var y = document.getElementById("longitude");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Questo browser non supporta la geolocalizzazione";
+    }
+}
+
+function showPosition(position) {
+	x.value = position.coords.latitude;
+	y.value = position.coords.longitude;
+}
+</script>
+
+</body>
+</html>
